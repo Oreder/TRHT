@@ -1,0 +1,11 @@
+C:\Users\nguye\Desktop\Diploma-Sharp\ModelProject\ModelProject\bin\Debug\ModelProject.exe.config
+C:\Users\nguye\Desktop\Diploma-Sharp\ModelProject\ModelProject\bin\Debug\ModelProject.exe
+C:\Users\nguye\Desktop\Diploma-Sharp\ModelProject\ModelProject\bin\Debug\ModelProject.pdb
+C:\Users\nguye\Desktop\Diploma-Sharp\ModelProject\ModelProject\obj\Debug\ModelProject.csprojResolveAssemblyReference.cache
+C:\Users\nguye\Desktop\Diploma-Sharp\ModelProject\ModelProject\obj\Debug\ModelProject.ModelPro.resources
+C:\Users\nguye\Desktop\Diploma-Sharp\ModelProject\ModelProject\obj\Debug\ModelProject.Properties.Resources.resources
+C:\Users\nguye\Desktop\Diploma-Sharp\ModelProject\ModelProject\obj\Debug\ModelProject.csproj.GenerateResource.Cache
+C:\Users\nguye\Desktop\Diploma-Sharp\ModelProject\ModelProject\obj\Debug\ModelProject.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Desktop\Diploma-Sharp\ModelProject\ModelProject\obj\Debug\ModelProject.exe
+C:\Users\nguye\Desktop\Diploma-Sharp\ModelProject\ModelProject\obj\Debug\ModelProject.pdb
+C:\Users\nguye\Desktop\Diploma-Sharp\ModelProject\ModelProject\obj\Debug\ModelProject.Navigation.Graph.resources
