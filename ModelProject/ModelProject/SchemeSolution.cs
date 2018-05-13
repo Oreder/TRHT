@@ -15,9 +15,15 @@
         private double dFreq { get; set; }
         private double[] __kFT { get; set; }
 
-        //public double[] Z;
-        //public double[] Up;
+        public double[] Z;
+        public double[] K;
+        public double[] Up;
         public double[] U;
+
+        /// <summary>
+        /// Divergence
+        /// </summary>
+        public double[] DivF;
 
         public SchemeSolution(int n, double T0, double m, double rad)
         {
@@ -118,10 +124,11 @@
             // get base data
             var modelBase = new ModelBase();
 
-            //Z = new double[__NZ + 1];
-            //Up = new double[__NZ + 1];
+            Z = new double[__NZ + 1];
+            K = new double[__NZ + 1];
+            Up = new double[__NZ + 1];
             U = new double[__NZ + 1];
-
+            DivF = new double[__NZ + 1];
             Freq = (Frequency[index + 1] + Frequency[index]) / 2.0;
             dFreq = Frequency[index + 1] - Frequency[index];
 
@@ -131,7 +138,16 @@
 
             Solve_Tridiagonal(Freq, dFreq, __kFT, out double[] tmp);
             for (int j = 0; j <= __NZ; j++)
+            {
+                double pos = (double)j / __NZ,
+                       tpa = GetTemperature(pos, T0, M);
+
+                K[j] = Interp.Lerp(tpa, Temperature, __kFT);
+                Up[j] = __Up(tpa, Freq, dFreq);
                 U[j] = tmp[j];
+
+                DivF[j] = Ch * K[j] * (Up[j] - U[j]);
+            }
             __kFT = null;
         }
     }
