@@ -27,14 +27,7 @@ namespace ModelProject
 
                 ex.Solve(index);
 
-                //var sc = new SchemeSolution(n,
-                //                            double.Parse(edtHighestTemp.Text),
-                //                            double.Parse(edtPowerTemp.Text),
-                //                            double.Parse(edtRadius.Text));
-                //sc.MScheme = double.Parse(mScheme.Text);
-                //sc.Solve();
-
-                var sc = new SchemeTest(n,
+                var sc = new SchemeSolution(n,
                                         double.Parse(edtHighestTemp.Text),
                                         double.Parse(edtPowerTemp.Text),
                                         double.Parse(edtRadius.Text));
@@ -57,7 +50,7 @@ namespace ModelProject
                     tab[3, iz].Value = ex.U[iz].ToString();
                     tab[4, iz].Value = sc.U[iz].ToString();
                     tab[5, iz].Value = ss.U[iz].ToString();
-
+                    //tab[5, iz].Value = sc.K[iz].ToString();
                     //tab[2, iz].Value = sc.Z[iz].ToString();
                     //tab[3, iz].Value = ex.Up[iz].ToString();
                     //tab[4, iz].Value = sc.GetUp(index)[iz].ToString();
@@ -178,7 +171,7 @@ namespace ModelProject
                     int n = int.Parse(edtDivisionCounter.Text);
                     //Us = new double[n + 1];
 
-                    var sc = new SchemeTest(n,
+                    var sc = new SchemeSolution(n,
                                             double.Parse(edtHighestTemp.Text),
                                             double.Parse(edtPowerTemp.Text),
                                             double.Parse(edtRadius.Text));

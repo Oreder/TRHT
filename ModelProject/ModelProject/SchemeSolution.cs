@@ -11,10 +11,14 @@
 
         public double MScheme { private get; set; }
 
-        public double[] Z;
-        private double[,] Up;
-        private double[,] U;
-        
+        private double Freq { get; set; }
+        private double dFreq { get; set; }
+        private double[] __kFT { get; set; }
+
+        //public double[] Z;
+        //public double[] Up;
+        public double[] U;
+
         public SchemeSolution(int n, double T0, double m, double rad)
         {
             __NZ = n;
@@ -109,59 +113,26 @@
             q = null;
         }
 
-        public void Solve()
+        public void Solve(int index)
         {
             // get base data
             var modelBase = new ModelBase();
 
-            Z = new double[__NZ + 1];
-            Up = new double[NFreq, __NZ + 1];
-            U = new double[NFreq, __NZ + 1];
+            //Z = new double[__NZ + 1];
+            //Up = new double[__NZ + 1];
+            U = new double[__NZ + 1];
 
-            for (int index = 0; index < NFreq; index++)
-            {
-                double freq = (Frequency[index + 1] + Frequency[index]) / 2.0;
-                double dfreq = Frequency[index + 1] - Frequency[index];
+            Freq = (Frequency[index + 1] + Frequency[index]) / 2.0;
+            dFreq = Frequency[index + 1] - Frequency[index];
 
-                double[] __kFT = new double[NTemp];
-                for (int k = 0; k < NTemp; k++)
-                    __kFT[k] = KFT[index, k];
+            double[] __kFT = new double[NTemp];
+            for (int k = 0; k < NTemp; k++)
+                __kFT[k] = KFT[index, k];
 
-                Solve_Tridiagonal(freq, dfreq, __kFT, out double[] tmp);
-                for (int j = 0; j <= __NZ; j++)
-                    U[index, j] = tmp[j];
-                __kFT = null;
-            }
-            
-            double dz = 1.0 / __NZ;
-            for (int iz = 0; iz <= __NZ; iz++)
-            {
-                Z[iz] = iz * dz;
-                double tf = GetTemperature(Z[iz], T0, M);
-                for (int index = 0; index < NFreq; index++)
-                {
-                    double freq = (Frequency[index + 1] + Frequency[index]) / 2.0;
-                    double dfreq = Frequency[index + 1] - Frequency[index];
-
-                    Up[index, iz] = __Up(tf, freq, dfreq);
-                }
-            }
-        }
-
-        public double[] GetU(int index)
-        {
-            double[] res = new double[__NZ + 1];
-            for (int iz = 0; iz <= __NZ; iz++)
-                res[iz] = U[index, iz];
-            return res;
-        }
-
-        public double[] GetUp(int index)
-        {
-            double[] res = new double[__NZ + 1];
-            for (int iz = 0; iz <= __NZ; iz++)
-                res[iz] = Up[index, iz];
-            return res;
+            Solve_Tridiagonal(Freq, dFreq, __kFT, out double[] tmp);
+            for (int j = 0; j <= __NZ; j++)
+                U[j] = tmp[j];
+            __kFT = null;
         }
     }
 }

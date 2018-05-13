@@ -67,7 +67,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchemeSolution.cs" />
-    <Compile Include="SchemeTest.cs" />
     <Compile Include="Schuster-Schwarzschild.cs" />
     <EmbeddedResource Include="ModelForm.resx">
       <DependentUpon>ModelForm.cs</DependentUpon>
