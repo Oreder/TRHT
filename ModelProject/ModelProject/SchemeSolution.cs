@@ -38,6 +38,12 @@
             Radius = rad;
         }
 
+        /// <summary>
+        /// Collect coefficients
+        /// </summary>
+        /// <param name="freq"></param>
+        /// <param name="dfreq"></param>
+        /// <param name="k"></param>
         private void Get_Co(double freq, double dfreq, double[] k)
         {
             double h = 1.0 / __NZ;                  // step
@@ -90,6 +96,13 @@
             D[__NZ] = kN1 * uN1 + kN0 * uN0;
         }
 
+        /// <summary>
+        /// Solve tridiagonal system 
+        /// </summary>
+        /// <param name="freq"></param>
+        /// <param name="dfreq"></param>
+        /// <param name="k"></param>
+        /// <param name="tmp"></param>
         private void Solve_Tridiagonal(double freq, double dfreq, double[] k, out double[] tmp)
         {
             Get_Co(freq, dfreq, k);
@@ -119,9 +132,13 @@
             q = null;
         }
 
+        /// <summary>
+        /// Scheme Solution 
+        /// </summary>
+        /// <param name="index"></param>
         public void Solve(int index)
         {
-            // get base data
+            // initializing
             var modelBase = new ModelBase();
 
             Z = new double[__NZ + 1];
@@ -129,6 +146,8 @@
             Up = new double[__NZ + 1];
             U = new double[__NZ + 1];
             DivF = new double[__NZ + 1];
+
+            // get database
             Freq = (Frequency[index + 1] + Frequency[index]) / 2.0;
             dFreq = Frequency[index + 1] - Frequency[index];
 
@@ -136,7 +155,9 @@
             for (int k = 0; k < NTemp; k++)
                 __kFT[k] = KFT[index, k];
 
-            Solve_Tridiagonal(Freq, dFreq, __kFT, out double[] tmp);
+            Solve_Tridiagonal(Freq, dFreq, __kFT, out double[] tmp);    // main
+
+            // final stuff
             for (int j = 0; j <= __NZ; j++)
             {
                 double pos = (double)j / __NZ,
@@ -146,6 +167,7 @@
                 Up[j] = __Up(tpa, Freq, dFreq);
                 U[j] = tmp[j];
 
+                // divergence
                 DivF[j] = Ch * K[j] * (Up[j] - U[j]);
             }
             __kFT = null;

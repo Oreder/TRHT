@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.edtHighestTemp = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,6 +46,7 @@
             this.edtDivisionCounter = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.indexUpDown = new System.Windows.Forms.NumericUpDown();
+            this.analyseBtn = new System.Windows.Forms.Button();
             this.btnExeAll = new System.Windows.Forms.Button();
             this.btnExecute = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -63,8 +65,8 @@
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.confirmGraphsBtn = new System.Windows.Forms.Button();
             this.selector = new System.Windows.Forms.CheckedListBox();
+            this.collectAnalysBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.indexUpDown)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -141,7 +143,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 229);
+            this.label4.Location = new System.Drawing.Point(3, 237);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(101, 16);
             this.label4.TabIndex = 1;
@@ -150,9 +152,9 @@
             // edtDivisionCounter
             // 
             this.edtDivisionCounter.Font = new System.Drawing.Font("Sylfaen", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edtDivisionCounter.Location = new System.Drawing.Point(6, 248);
+            this.edtDivisionCounter.Location = new System.Drawing.Point(110, 229);
             this.edtDivisionCounter.Name = "edtDivisionCounter";
-            this.edtDivisionCounter.Size = new System.Drawing.Size(189, 29);
+            this.edtDivisionCounter.Size = new System.Drawing.Size(85, 29);
             this.edtDivisionCounter.TabIndex = 2;
             this.edtDivisionCounter.Text = "80";
             this.edtDivisionCounter.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -162,6 +164,8 @@
             this.panel1.BackColor = System.Drawing.Color.Lavender;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.indexUpDown);
+            this.panel1.Controls.Add(this.collectAnalysBtn);
+            this.panel1.Controls.Add(this.analyseBtn);
             this.panel1.Controls.Add(this.btnExeAll);
             this.panel1.Controls.Add(this.btnExecute);
             this.panel1.Controls.Add(this.groupBox1);
@@ -183,15 +187,27 @@
             // indexUpDown
             // 
             this.indexUpDown.Font = new System.Drawing.Font("Sylfaen", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.indexUpDown.Location = new System.Drawing.Point(49, 284);
+            this.indexUpDown.Location = new System.Drawing.Point(110, 260);
             this.indexUpDown.Maximum = new decimal(new int[] {
             192,
             0,
             0,
             0});
             this.indexUpDown.Name = "indexUpDown";
-            this.indexUpDown.Size = new System.Drawing.Size(146, 29);
+            this.indexUpDown.Size = new System.Drawing.Size(85, 29);
             this.indexUpDown.TabIndex = 7;
+            this.indexUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // analyseBtn
+            // 
+            this.analyseBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.analyseBtn.Location = new System.Drawing.Point(3, 439);
+            this.analyseBtn.Name = "analyseBtn";
+            this.analyseBtn.Size = new System.Drawing.Size(189, 54);
+            this.analyseBtn.TabIndex = 6;
+            this.analyseBtn.Text = "Analyse";
+            this.analyseBtn.UseVisualStyleBackColor = true;
+            this.analyseBtn.Click += new System.EventHandler(this.analyseBtn_Click);
             // 
             // btnExeAll
             // 
@@ -254,11 +270,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 288);
+            this.label5.Location = new System.Drawing.Point(3, 267);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 16);
+            this.label5.Size = new System.Drawing.Size(102, 16);
             this.label5.TabIndex = 1;
-            this.label5.Text = "Index";
+            this.label5.Text = "Frequency index";
             // 
             // panel3
             // 
@@ -351,34 +367,38 @@
             this.chart.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
             this.chart.BorderlineWidth = 0;
             this.chart.BorderSkin.BackColor = System.Drawing.Color.DarkGreen;
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea2);
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.chart.Legends.Add(legend2);
             this.chart.Location = new System.Drawing.Point(0, 0);
             this.chart.Name = "chart";
             this.chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Up";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "U(e)";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "U(s)";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "DivF(e)";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "DivF(s)";
-            this.chart.Series.Add(series1);
-            this.chart.Series.Add(series2);
-            this.chart.Series.Add(series3);
-            this.chart.Series.Add(series4);
-            this.chart.Series.Add(series5);
+            series7.ChartArea = "ChartArea1";
+            series7.Legend = "Legend1";
+            series7.Name = "Up";
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "U(e)";
+            series9.ChartArea = "ChartArea1";
+            series9.Legend = "Legend1";
+            series9.Name = "U(s)";
+            series10.ChartArea = "ChartArea1";
+            series10.Legend = "Legend1";
+            series10.Name = "DivF(e)";
+            series11.ChartArea = "ChartArea1";
+            series11.Legend = "Legend1";
+            series11.Name = "DivF(s)";
+            series12.ChartArea = "ChartArea1";
+            series12.Legend = "Legend1";
+            series12.Name = "mScheme (analys type 1)";
+            this.chart.Series.Add(series7);
+            this.chart.Series.Add(series8);
+            this.chart.Series.Add(series9);
+            this.chart.Series.Add(series10);
+            this.chart.Series.Add(series11);
+            this.chart.Series.Add(series12);
             this.chart.Size = new System.Drawing.Size(657, 430);
             this.chart.TabIndex = 0;
             // 
@@ -394,22 +414,10 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.confirmGraphsBtn);
             this.splitContainer1.Panel2.Controls.Add(this.selector);
             this.splitContainer1.Size = new System.Drawing.Size(836, 430);
             this.splitContainer1.SplitterDistance = 657;
             this.splitContainer1.TabIndex = 6;
-            // 
-            // confirmGraphsBtn
-            // 
-            this.confirmGraphsBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.confirmGraphsBtn.Location = new System.Drawing.Point(0, 386);
-            this.confirmGraphsBtn.Name = "confirmGraphsBtn";
-            this.confirmGraphsBtn.Size = new System.Drawing.Size(175, 44);
-            this.confirmGraphsBtn.TabIndex = 10;
-            this.confirmGraphsBtn.Text = "Confirm";
-            this.confirmGraphsBtn.UseVisualStyleBackColor = true;
-            this.confirmGraphsBtn.Click += new System.EventHandler(this.confirmGraphsBtn_Click);
             // 
             // selector
             // 
@@ -427,6 +435,17 @@
             this.selector.Name = "selector";
             this.selector.Size = new System.Drawing.Size(175, 430);
             this.selector.TabIndex = 9;
+            // 
+            // collectAnalysBtn
+            // 
+            this.collectAnalysBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.collectAnalysBtn.Location = new System.Drawing.Point(3, 499);
+            this.collectAnalysBtn.Name = "collectAnalysBtn";
+            this.collectAnalysBtn.Size = new System.Drawing.Size(189, 54);
+            this.collectAnalysBtn.TabIndex = 6;
+            this.collectAnalysBtn.Text = "Collect mScheme";
+            this.collectAnalysBtn.UseVisualStyleBackColor = true;
+            this.collectAnalysBtn.Click += new System.EventHandler(this.collectAnalysBtn_Click);
             // 
             // ModelPro
             // 
@@ -486,7 +505,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.CheckedListBox selector;
-        private System.Windows.Forms.Button confirmGraphsBtn;
+        private System.Windows.Forms.Button analyseBtn;
+        private System.Windows.Forms.Button collectAnalysBtn;
     }
 }
 

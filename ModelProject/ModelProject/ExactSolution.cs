@@ -13,7 +13,7 @@ namespace ModelProject
         private double M { get; set; }
         private double Radius { get; set; }
 
-        private double Freq { get; set; }
+        public double Freq { get; set; }
         private double dFreq { get; set; }
         private double[] __kFT { get; set; }
 

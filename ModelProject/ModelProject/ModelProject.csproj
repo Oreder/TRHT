@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Coefficients.cs" />
+    <Compile Include="AnalysingCoefficient.cs" />
     <Compile Include="ExactSolution.cs" />
     <Compile Include="ModelForm.cs">
       <SubType>Form</SubType>
