@@ -29,7 +29,7 @@ namespace ModelProject
             {
                 int index = int.Parse(indexUpDown.Value.ToString());
                 int n = int.Parse(edtDivisionCounter.Text);
-                var ex = new ExactSolution(n,
+                var ex = new ExactTest(n,
                                            double.Parse(edtHighestTemp.Text),
                                            double.Parse(edtPowerTemp.Text),
                                            double.Parse(edtRadius.Text));
@@ -174,12 +174,12 @@ namespace ModelProject
             try
             {
                 int n = int.Parse(edtDivisionCounter.Text);
-                var ex = new ExactSolution(n,
+                var ex = new ExactTest(n,
                                            double.Parse(edtHighestTemp.Text),
                                            double.Parse(edtPowerTemp.Text),
                                            double.Parse(edtRadius.Text));
 
-                ex.SolveAll();
+                //ex.SolveAll();
                 ex = null;
             }
             catch (Exception ex)
@@ -256,13 +256,13 @@ namespace ModelProject
                 double M = double.Parse(edtPowerTemp.Text);
                 double Radius = double.Parse(edtRadius.Text);
 
-                var ex = new ExactSolution(__NZ, T0, M, Radius);
+                var ex = new ExactTest(__NZ, T0, M, Radius);
 
-                int MaxIndex = 50;          // HERE!!!
+                int MaxIndex = 30;          // HERE!!!
                 double[] Freq = new double[MaxIndex + 1];
                 double[] MS = new double[MaxIndex + 1];
 
-                // main stuff: collecting mScheme
+                // main stuff: collecting mScheme       # found exception: 31-33
                 for (int index = 0; index <= MaxIndex; index++)
                 {
                     ex.Solve(index);

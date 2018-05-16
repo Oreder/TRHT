@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AnalysingCoefficient.cs" />
     <Compile Include="ExactSolution.cs" />
+    <Compile Include="ExactTest.cs" />
     <Compile Include="ModelForm.cs">
       <SubType>Form</SubType>
     </Compile>
