@@ -11,7 +11,7 @@ namespace ModelProject
         public ModelPro()
         {
             InitializeComponent();
-            GraphCount = 6;         // here!
+            GraphCount = 7;         // here!
             GraphList = new bool[GraphCount];
 
             selector.SetItemChecked(3, true);
@@ -28,18 +28,16 @@ namespace ModelProject
             try
             {
                 int index = int.Parse(indexUpDown.Value.ToString());
-                int n = int.Parse(edtDivisionCounter.Text);
-                var ex = new ExactTest(n,
-                                           double.Parse(edtHighestTemp.Text),
-                                           double.Parse(edtPowerTemp.Text),
-                                           double.Parse(edtRadius.Text));
+                int __NZ = int.Parse(edtDivisionCounter.Text);
+                double T0 = double.Parse(edtHighestTemp.Text);
+                double M = double.Parse(edtPowerTemp.Text);
+                double Radius = double.Parse(edtRadius.Text);
 
+                //var ex = new ExactTest(__NZ, T0, M, Radius);
+                var ex = new ExactSolution(__NZ, T0, M, Radius);
                 ex.Solve(index);
 
-                var sc = new SchemeSolution(n,
-                                        double.Parse(edtHighestTemp.Text),
-                                        double.Parse(edtPowerTemp.Text),
-                                        double.Parse(edtRadius.Text));
+                var sc = new SchemeSolution(__NZ, T0, M, Radius);
                 sc.MScheme = double.Parse(mScheme.Text);
                 sc.Solve(index);
 
@@ -48,8 +46,8 @@ namespace ModelProject
                 //                            double.Parse(edtPowerTemp.Text),
                 //                            double.Parse(edtRadius.Text));
                 //ss.Solve(index);                // Table
-                tab.RowCount = n + 1;
-                for (int iz = 0; iz <= n; iz++)
+                tab.RowCount = __NZ + 1;
+                for (int iz = 0; iz <= __NZ; iz++)
                 {
                     tab[0, iz].Value = iz.ToString();
                     tab[1, iz].Value = string.Format("{0:E5}", ex.Z[iz]);
@@ -148,6 +146,8 @@ namespace ModelProject
                 SelectDataFromTableByGraph(3, 6, n, out double[] DFE);
                 SelectDataFromTableByGraph(4, 7, n, out double[] DFS);
 
+                SelectDataFromTableByGraph(6, 8, n, out double[] Thread);
+
                 // Clear chart
                 foreach (var s in chart.Series)
                 {
@@ -161,6 +161,7 @@ namespace ModelProject
                 Draw(3, Z, DFE);
                 Draw(4, Z, DFS);
                 Draw(5, null, null);
+                Draw(6, Z, Thread);
             }
             catch (Exception ex)
             {
@@ -194,7 +195,7 @@ namespace ModelProject
             {
                 try
                 {
-                    int index = int.Parse(edtDivisionCounter.Text);
+                    int index = int.Parse(indexUpDown.Value.ToString());
                     int n = int.Parse(edtDivisionCounter.Text);
                     //Us = new double[n + 1];
 
@@ -250,17 +251,19 @@ namespace ModelProject
             try
             {
                 // initialize
-
                 int __NZ = int.Parse(edtDivisionCounter.Text);
                 double T0 = double.Parse(edtHighestTemp.Text);
                 double M = double.Parse(edtPowerTemp.Text);
                 double Radius = double.Parse(edtRadius.Text);
 
-                var ex = new ExactTest(__NZ, T0, M, Radius);
+                //var ex = new ExactTest(__NZ, T0, M, Radius);
+                var ex = new ExactSolution(__NZ, T0, M, Radius);
 
-                int MaxIndex = 30;          // HERE!!!
+                //int MaxIndex = ex.NFreq - 1;          // HERE!!!
+                int MaxIndex = int.Parse(indexUpDown.Value.ToString());
                 double[] Freq = new double[MaxIndex + 1];
                 double[] MS = new double[MaxIndex + 1];
+                double[] Tau = new double[MaxIndex + 1];
 
                 // main stuff: collecting mScheme       # found exception: 31-33
                 for (int index = 0; index <= MaxIndex; index++)
@@ -270,22 +273,32 @@ namespace ModelProject
                     double value = AC.FirstMethod(__NZ, T0, M, Radius, index);
 
                     Freq[index] = ex.Freq;
+                    Tau[index] = ex.Tau;
                     MS[index] = value;
                     AC = null;
                 }
                 ex = null;
 
+                // save m (analys) and tau to file
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"..//..//result//MT.txt"))
+                {
+                    for (int j = 0; j <= MaxIndex; j++)
+                    {
+                        file.Write("{0}\t{1}\t{2}\n", Freq[j], MS[j], Tau[j]);
+                    }
+                }
+
                 // Graph
                 // 1. Correct interface
-                for (int i = 0; i < GraphCount - 1; i++)
+                for (int i = 0; i < GraphCount; i++)
                 {
                     selector.SetItemChecked(i, false);
                     GraphList[i] = false;
                     chart.Series[i].Enabled = GraphList[i];
                 }
 
-                selector.SetItemChecked(GraphCount - 1, true);
-                GraphList[GraphCount - 1] = true;
+                selector.SetItemChecked(5, true);
+                GraphList[5] = true;
 
                 // 2. Clear old chart
                 foreach (var s in chart.Series)
@@ -294,7 +307,48 @@ namespace ModelProject
                 }
 
                 // 3. Draw result
-                Draw(GraphCount - 1, Freq, MS);
+                Draw(5, Freq, MS);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Exception", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
+        #endregion
+
+        #region Thread report # found at m = 0.15
+        private void reportBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // initialize
+                int __NZ = int.Parse(edtDivisionCounter.Text);
+                double T0 = double.Parse(edtHighestTemp.Text);
+                double M = double.Parse(edtPowerTemp.Text);
+                double Radius = double.Parse(edtRadius.Text);
+                selector.SetItemChecked(6, true);
+
+                double[] result = new double[__NZ + 1];
+                var sc = new SchemeSolution(__NZ, T0, M, Radius);
+                sc.MScheme = double.Parse(mScheme.Text);
+                //sc.MScheme = 0.15;
+
+                for (int i = 0; i < sc.NFreq; i++)
+                {
+                    sc.Solve(i);
+                    for (int j = 0; j <= __NZ; j++)
+                    {
+                        result[j] += sc.DivF[j] * sc.dFreq;
+                    }
+                }
+
+                for (int j = 0; j <= __NZ; j++)
+                {
+                    tab[8, j].Value = string.Format("{0:E5}", result[j]);
+                }
+
+                ShowGraph();
+                sc = null;
             }
             catch (Exception ex)
             {

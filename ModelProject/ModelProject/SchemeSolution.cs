@@ -12,13 +12,15 @@
         public double MScheme { private get; set; }
 
         private double Freq { get; set; }
-        private double dFreq { get; set; }
+        public double dFreq { get; set; }
         private double[] __kFT { get; set; }
 
         public double[] Z;
         public double[] K;
         public double[] Up;
         public double[] U;
+
+        public double Tau { get; set; }
 
         /// <summary>
         /// Divergence
@@ -146,6 +148,7 @@
             Up = new double[__NZ + 1];
             U = new double[__NZ + 1];
             DivF = new double[__NZ + 1];
+            //Tau = 0.0;
 
             // get database
             Freq = (Frequency[index + 1] + Frequency[index]) / 2.0;
@@ -169,8 +172,12 @@
 
                 // divergence
                 DivF[j] = Ch * K[j] * (Up[j] - U[j]);
+
+                // Tau
+                //Tau += K[j];
             }
             __kFT = null;
+            //Tau *= Radius / __NZ;
         }
     }
 }

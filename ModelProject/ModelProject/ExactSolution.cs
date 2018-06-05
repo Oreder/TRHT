@@ -21,6 +21,7 @@ namespace ModelProject
         public double[] K;
         public double[] Up;
         public double[] U;
+        public double Tau { get; set; }
 
         /// <summary>
         /// Divergence
@@ -119,6 +120,7 @@ namespace ModelProject
             Up = new double[__nZ + 1];
             U = new double[__nZ + 1];
             K = new double[__nZ + 1];
+            Tau = 0.0;
 
             // main
             for (int iz = 0; iz <= __nZ; iz++)
@@ -130,6 +132,7 @@ namespace ModelProject
                 Up[iz] = __Up(tf, Freq, dFreq);
 
                 K[iz] = Interp.Lerp(tf, Temperature, __kFT);
+                Tau += K[iz];
 
                 U[iz] = 0.0;    // correct?
 
@@ -159,6 +162,8 @@ namespace ModelProject
             {
                 DivF[iz] = Ch * K[iz] * (Up[iz] - U[iz]);
             }
+
+            Tau *= Radius * dz;
         }
 
         #region Solution All
