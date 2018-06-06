@@ -349,7 +349,8 @@ namespace ModelProject
                 double Radius = double.Parse(edtRadius.Text);
                 selector.SetItemChecked(7, true);
 
-                int MaxIndex = 20; // int.Parse(indexUpDown.Value.ToString());
+                //int MaxIndex = 20;
+                int MaxIndex = int.Parse(indexUpDown.Value.ToString());
                 double[] Freq = new double[MaxIndex + 1];
                 double[] deltaThread = new double[MaxIndex + 1];
 
@@ -364,7 +365,7 @@ namespace ModelProject
                     {
                         sc.Solve(i);
                         Freq[i] = sc.Freq;
-                        deltaThread[i] = sc.F[__NZ];
+                        deltaThread[i] = sc.F[__NZ] / sc.dFreq;
                         Console.WriteLine("{0}", deltaThread[i]);
 
                         // write to file
@@ -413,7 +414,7 @@ namespace ModelProject
                             if (j == MaxIndex && i == __NZ)
                                 file.WriteLine("{0:E}", sc.F[__NZ]);
                             else
-                                file.Write("{0:E},", sc.F[j]);
+                                file.Write("{0:E},", sc.F[i]);
                         }
                     }
                 }
