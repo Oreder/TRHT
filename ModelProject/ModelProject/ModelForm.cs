@@ -11,7 +11,7 @@ namespace ModelProject
         public ModelPro()
         {
             InitializeComponent();
-            GraphCount = 7;         // here!
+            GraphCount = 8;         // here!
             GraphList = new bool[GraphCount];
 
             selector.SetItemChecked(3, true);
@@ -170,25 +170,6 @@ namespace ModelProject
         } 
         #endregion
 
-        private void btnExeAll_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int n = int.Parse(edtDivisionCounter.Text);
-                var ex = new ExactTest(n,
-                                           double.Parse(edtHighestTemp.Text),
-                                           double.Parse(edtPowerTemp.Text),
-                                           double.Parse(edtRadius.Text));
-
-                //ex.SolveAll();
-                ex = null;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Exception", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
-        }
-
         private void mScheme_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -280,7 +261,7 @@ namespace ModelProject
                 ex = null;
 
                 // save m (analys) and tau to file
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"..//..//result//MT.txt"))
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"..//..//MT-reports//MT.txt"))
                 {
                     for (int j = 0; j <= MaxIndex; j++)
                     {
@@ -354,7 +335,115 @@ namespace ModelProject
             {
                 MessageBox.Show(ex.ToString(), "Exception", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-        } 
+        }
         #endregion
+
+        private void btnThreadbyFreq_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // initialize
+                int __NZ = int.Parse(edtDivisionCounter.Text);
+                double T0 = double.Parse(edtHighestTemp.Text);
+                double M = double.Parse(edtPowerTemp.Text);
+                double Radius = double.Parse(edtRadius.Text);
+                selector.SetItemChecked(7, true);
+
+                int MaxIndex = 20; // int.Parse(indexUpDown.Value.ToString());
+                double[] Freq = new double[MaxIndex + 1];
+                double[] deltaThread = new double[MaxIndex + 1];
+
+                var sc = new SchemeSolution(__NZ, T0, M, Radius);
+                //sc.MScheme = double.Parse(mScheme.Text);
+                sc.MScheme = 0.866;
+
+                // save m (analys) and tau to file
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"..//..//Thread//ThreadByFrequency.csv"))
+                {
+                    for (int i = 0; i <= MaxIndex; i++)
+                    {
+                        sc.Solve(i);
+                        Freq[i] = sc.Freq;
+                        deltaThread[i] = sc.F[__NZ];
+                        Console.WriteLine("{0}", deltaThread[i]);
+
+                        // write to file
+                        for (int j = 0; j < __NZ; j++)
+                        {
+                            file.Write("{0:E},", sc.F[j]);
+                        }
+                        file.WriteLine("{0:E}", sc.F[__NZ]);
+                    }
+                }
+
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"..//..//Thread//ThreadByFrequency.txt"))
+                {
+                    // X-axis
+                    for (int j = 0; j <= MaxIndex; j++)
+                    {
+                        for (int i = 0; i <= __NZ; i++)
+                        {
+                            if (j == MaxIndex && i == __NZ)
+                                file.WriteLine("{0:E}", 1.0);
+                            else
+                                file.Write("{0:E},", (double)i / __NZ);                        
+                        }
+                    }
+
+                    // Y-axis
+                    var modelBase = new ModelBase();
+                    for (int j = 0; j <= MaxIndex; j++)
+                    {
+                        for (int i = 0; i <= __NZ; i++)
+                        {
+                            if (j == MaxIndex && i == __NZ)
+                                file.WriteLine("{0:E}", (modelBase.Frequency[MaxIndex + 1] + modelBase.Frequency[MaxIndex]) / 2.0);
+                            else
+                                file.Write("{0:E},", (modelBase.Frequency[j + 1] + modelBase.Frequency[j]) / 2.0);
+                        }
+                    }
+                    modelBase = null;
+
+                    // Z-axis
+                    for (int j = 0; j <= MaxIndex; j++)
+                    {
+                        sc.Solve(j);
+                        for (int i = 0; i <= __NZ; i++)
+                        {
+                            if (j == MaxIndex && i == __NZ)
+                                file.WriteLine("{0:E}", sc.F[__NZ]);
+                            else
+                                file.Write("{0:E},", sc.F[j]);
+                        }
+                    }
+                }
+                sc = null;
+
+                // Graph
+                // 1. Correct interface
+                for (int i = 0; i < GraphCount; i++)
+                {
+                    selector.SetItemChecked(i, false);
+                    GraphList[i] = false;
+                    chart.Series[i].Enabled = GraphList[i];
+                }
+
+                selector.SetItemChecked(7, true);
+                GraphList[7] = true;
+
+                // 2. Clear old chart
+                foreach (var s in chart.Series)
+                {
+                    s.Points.Clear();
+                }
+
+                // 3. Draw result
+                Draw(7, Freq, deltaThread);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Exception", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
     }
 }

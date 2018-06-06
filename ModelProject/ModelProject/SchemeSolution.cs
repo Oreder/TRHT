@@ -11,7 +11,7 @@
 
         public double MScheme { private get; set; }
 
-        private double Freq { get; set; }
+        public double Freq { get; set; }
         public double dFreq { get; set; }
         private double[] __kFT { get; set; }
 
@@ -19,7 +19,7 @@
         public double[] K;
         public double[] Up;
         public double[] U;
-
+        public double[] F;
         public double Tau { get; set; }
 
         /// <summary>
@@ -147,6 +147,8 @@
             K = new double[__NZ + 1];
             Up = new double[__NZ + 1];
             U = new double[__NZ + 1];
+            F = new double[__NZ + 1];
+
             DivF = new double[__NZ + 1];
             //Tau = 0.0;
 
@@ -178,6 +180,15 @@
             }
             __kFT = null;
             //Tau *= Radius / __NZ;
+
+            F[0] = 0.0;
+            double dx = 1.0 / __NZ;
+            for (int j = 1; j <= __NZ; j++)
+            {
+                double x1 = j * dx, x0 = (j - 1) * dx;
+                F[j] = F[j - 1] * x0 / x1 + Radius * (DivF[j] * x1 * x1 - DivF[j - 1] * x0 * x0) / 2.0 / x1;
+                //F[j] /= dFreq;
+            }
         }
     }
 }

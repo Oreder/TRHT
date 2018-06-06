@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.edtHighestTemp = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,9 +48,9 @@
             this.edtDivisionCounter = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.indexUpDown = new System.Windows.Forms.NumericUpDown();
+            this.reportBtn = new System.Windows.Forms.Button();
             this.collectAnalysBtn = new System.Windows.Forms.Button();
             this.analyseBtn = new System.Windows.Forms.Button();
-            this.btnExeAll = new System.Windows.Forms.Button();
             this.btnExecute = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.mScheme = new System.Windows.Forms.TextBox();
@@ -60,7 +61,7 @@
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.selector = new System.Windows.Forms.CheckedListBox();
-            this.reportBtn = new System.Windows.Forms.Button();
+            this.btnThreadbyFreq = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -166,11 +167,11 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Lavender;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnThreadbyFreq);
             this.panel1.Controls.Add(this.indexUpDown);
             this.panel1.Controls.Add(this.reportBtn);
             this.panel1.Controls.Add(this.collectAnalysBtn);
             this.panel1.Controls.Add(this.analyseBtn);
-            this.panel1.Controls.Add(this.btnExeAll);
             this.panel1.Controls.Add(this.btnExecute);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.label1);
@@ -202,10 +203,21 @@
             this.indexUpDown.TabIndex = 7;
             this.indexUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // reportBtn
+            // 
+            this.reportBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportBtn.Location = new System.Drawing.Point(6, 485);
+            this.reportBtn.Name = "reportBtn";
+            this.reportBtn.Size = new System.Drawing.Size(189, 54);
+            this.reportBtn.TabIndex = 6;
+            this.reportBtn.Text = "Divergence of Thread Report";
+            this.reportBtn.UseVisualStyleBackColor = true;
+            this.reportBtn.Click += new System.EventHandler(this.reportBtn_Click);
+            // 
             // collectAnalysBtn
             // 
             this.collectAnalysBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.collectAnalysBtn.Location = new System.Drawing.Point(6, 485);
+            this.collectAnalysBtn.Location = new System.Drawing.Point(6, 425);
             this.collectAnalysBtn.Name = "collectAnalysBtn";
             this.collectAnalysBtn.Size = new System.Drawing.Size(189, 54);
             this.collectAnalysBtn.TabIndex = 6;
@@ -216,24 +228,13 @@
             // analyseBtn
             // 
             this.analyseBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.analyseBtn.Location = new System.Drawing.Point(6, 425);
+            this.analyseBtn.Location = new System.Drawing.Point(6, 365);
             this.analyseBtn.Name = "analyseBtn";
             this.analyseBtn.Size = new System.Drawing.Size(189, 54);
             this.analyseBtn.TabIndex = 6;
             this.analyseBtn.Text = "Analyse";
             this.analyseBtn.UseVisualStyleBackColor = true;
             this.analyseBtn.Click += new System.EventHandler(this.analyseBtn_Click);
-            // 
-            // btnExeAll
-            // 
-            this.btnExeAll.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExeAll.Location = new System.Drawing.Point(6, 365);
-            this.btnExeAll.Name = "btnExeAll";
-            this.btnExeAll.Size = new System.Drawing.Size(189, 54);
-            this.btnExeAll.TabIndex = 6;
-            this.btnExeAll.Text = "Execute All";
-            this.btnExeAll.UseVisualStyleBackColor = true;
-            this.btnExeAll.Click += new System.EventHandler(this.btnExeAll_Click);
             // 
             // btnExecute
             // 
@@ -334,42 +335,46 @@
             this.chart.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
             this.chart.BorderlineWidth = 0;
             this.chart.BorderSkin.BackColor = System.Drawing.Color.DarkGreen;
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea2);
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.chart.Legends.Add(legend2);
             this.chart.Location = new System.Drawing.Point(0, 0);
             this.chart.Name = "chart";
             this.chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Up";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "U(e)";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "U(s)";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "DivF(e)";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "DivF(s)";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "mScheme (analys type 1)";
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Thread";
-            this.chart.Series.Add(series1);
-            this.chart.Series.Add(series2);
-            this.chart.Series.Add(series3);
-            this.chart.Series.Add(series4);
-            this.chart.Series.Add(series5);
-            this.chart.Series.Add(series6);
-            this.chart.Series.Add(series7);
+            series9.ChartArea = "ChartArea1";
+            series9.Legend = "Legend1";
+            series9.Name = "Up";
+            series10.ChartArea = "ChartArea1";
+            series10.Legend = "Legend1";
+            series10.Name = "U(e)";
+            series11.ChartArea = "ChartArea1";
+            series11.Legend = "Legend1";
+            series11.Name = "U(s)";
+            series12.ChartArea = "ChartArea1";
+            series12.Legend = "Legend1";
+            series12.Name = "DivF(e)";
+            series13.ChartArea = "ChartArea1";
+            series13.Legend = "Legend1";
+            series13.Name = "DivF(s)";
+            series14.ChartArea = "ChartArea1";
+            series14.Legend = "Legend1";
+            series14.Name = "mScheme (analys type 1)";
+            series15.ChartArea = "ChartArea1";
+            series15.Legend = "Legend1";
+            series15.Name = "divergence of Thread";
+            series16.ChartArea = "ChartArea1";
+            series16.Legend = "Legend1";
+            series16.Name = "deltaThread";
+            this.chart.Series.Add(series9);
+            this.chart.Series.Add(series10);
+            this.chart.Series.Add(series11);
+            this.chart.Series.Add(series12);
+            this.chart.Series.Add(series13);
+            this.chart.Series.Add(series14);
+            this.chart.Series.Add(series15);
+            this.chart.Series.Add(series16);
             this.chart.Size = new System.Drawing.Size(679, 430);
             this.chart.TabIndex = 0;
             // 
@@ -402,22 +407,23 @@
             "Divergence (exact solution)",
             "Divergence (scheme solution)",
             "mScheme",
-            "Thread"});
+            "divergence of Thread",
+            "deltaThread"});
             this.selector.Location = new System.Drawing.Point(0, 0);
             this.selector.Name = "selector";
             this.selector.Size = new System.Drawing.Size(181, 430);
             this.selector.TabIndex = 9;
             // 
-            // reportBtn
+            // btnThreadbyFreq
             // 
-            this.reportBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reportBtn.Location = new System.Drawing.Point(6, 545);
-            this.reportBtn.Name = "reportBtn";
-            this.reportBtn.Size = new System.Drawing.Size(189, 54);
-            this.reportBtn.TabIndex = 6;
-            this.reportBtn.Text = "Thread Report";
-            this.reportBtn.UseVisualStyleBackColor = true;
-            this.reportBtn.Click += new System.EventHandler(this.reportBtn_Click);
+            this.btnThreadbyFreq.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThreadbyFreq.Location = new System.Drawing.Point(6, 545);
+            this.btnThreadbyFreq.Name = "btnThreadbyFreq";
+            this.btnThreadbyFreq.Size = new System.Drawing.Size(189, 54);
+            this.btnThreadbyFreq.TabIndex = 8;
+            this.btnThreadbyFreq.Text = "Thread by frequency";
+            this.btnThreadbyFreq.UseVisualStyleBackColor = true;
+            this.btnThreadbyFreq.Click += new System.EventHandler(this.btnThreadbyFreq_Click);
             // 
             // Column1
             // 
@@ -470,7 +476,7 @@
             // 
             // Column9
             // 
-            this.Column9.HeaderText = "Thread";
+            this.Column9.HeaderText = "divergence of Thread";
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
             // 
@@ -521,12 +527,12 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox mScheme;
         private System.Windows.Forms.Button btnExecute;
-        private System.Windows.Forms.Button btnExeAll;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.CheckedListBox selector;
         private System.Windows.Forms.Button analyseBtn;
         private System.Windows.Forms.Button collectAnalysBtn;
         private System.Windows.Forms.Button reportBtn;
+        private System.Windows.Forms.Button btnThreadbyFreq;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
