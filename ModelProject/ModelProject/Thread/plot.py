@@ -13,6 +13,11 @@ with open("ThreadByFrequency.txt", 'r') as file:
 	y = [float(value) for value in file.readline().split(',')]
 	z = [float(value) for value in file.readline().split(',')]
 
+# N = 81 * 125
+# x = x[N:]
+# y = y[N:]
+# z = z[N:]
+	
 x = np.array(x)
 y = np.array(y)
 z = np.array(z)

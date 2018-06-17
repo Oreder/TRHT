@@ -134,6 +134,11 @@ namespace ModelProject
                     GraphList[i] = (selector.GetItemChecked(i)) ? true : false;
                 }
 
+                // the last one will not be show here!
+                selector.SetItemChecked(7, false);
+                GraphList[7] = false;
+                chart.Series[7].Enabled = GraphList[7];
+
                 // collect data
                 int n = int.Parse(edtDivisionCounter.Text);
 

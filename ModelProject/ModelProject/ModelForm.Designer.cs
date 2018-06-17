@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series33 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series34 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series35 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series36 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series37 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series38 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series39 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series40 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.edtHighestTemp = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,6 +47,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.edtDivisionCounter = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnThreadbyFreq = new System.Windows.Forms.Button();
             this.indexUpDown = new System.Windows.Forms.NumericUpDown();
             this.reportBtn = new System.Windows.Forms.Button();
             this.collectAnalysBtn = new System.Windows.Forms.Button();
@@ -58,10 +59,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tab = new System.Windows.Forms.DataGridView();
-            this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.selector = new System.Windows.Forms.CheckedListBox();
-            this.btnThreadbyFreq = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,6 +68,9 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.selector = new System.Windows.Forms.CheckedListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.indexUpDown)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -188,6 +188,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(202, 607);
             this.panel1.TabIndex = 3;
+            // 
+            // btnThreadbyFreq
+            // 
+            this.btnThreadbyFreq.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThreadbyFreq.Location = new System.Drawing.Point(6, 545);
+            this.btnThreadbyFreq.Name = "btnThreadbyFreq";
+            this.btnThreadbyFreq.Size = new System.Drawing.Size(189, 54);
+            this.btnThreadbyFreq.TabIndex = 8;
+            this.btnThreadbyFreq.Text = "Thread by frequency";
+            this.btnThreadbyFreq.UseVisualStyleBackColor = true;
+            this.btnThreadbyFreq.Click += new System.EventHandler(this.btnThreadbyFreq_Click);
             // 
             // indexUpDown
             // 
@@ -327,104 +338,6 @@
             this.tab.Size = new System.Drawing.Size(862, 175);
             this.tab.TabIndex = 0;
             // 
-            // chart
-            // 
-            this.chart.BackColor = System.Drawing.Color.Silver;
-            this.chart.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
-            this.chart.BorderlineColor = System.Drawing.Color.Transparent;
-            this.chart.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            this.chart.BorderlineWidth = 0;
-            this.chart.BorderSkin.BackColor = System.Drawing.Color.DarkGreen;
-            chartArea2.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea2);
-            this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chart.Legends.Add(legend2);
-            this.chart.Location = new System.Drawing.Point(0, 0);
-            this.chart.Name = "chart";
-            this.chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
-            series9.ChartArea = "ChartArea1";
-            series9.Legend = "Legend1";
-            series9.Name = "Up";
-            series10.ChartArea = "ChartArea1";
-            series10.Legend = "Legend1";
-            series10.Name = "U(e)";
-            series11.ChartArea = "ChartArea1";
-            series11.Legend = "Legend1";
-            series11.Name = "U(s)";
-            series12.ChartArea = "ChartArea1";
-            series12.Legend = "Legend1";
-            series12.Name = "DivF(e)";
-            series13.ChartArea = "ChartArea1";
-            series13.Legend = "Legend1";
-            series13.Name = "DivF(s)";
-            series14.ChartArea = "ChartArea1";
-            series14.Legend = "Legend1";
-            series14.Name = "mScheme (analys type 1)";
-            series15.ChartArea = "ChartArea1";
-            series15.Legend = "Legend1";
-            series15.Name = "divergence of Thread";
-            series16.ChartArea = "ChartArea1";
-            series16.Legend = "Legend1";
-            series16.Name = "deltaThread";
-            this.chart.Series.Add(series9);
-            this.chart.Series.Add(series10);
-            this.chart.Series.Add(series11);
-            this.chart.Series.Add(series12);
-            this.chart.Series.Add(series13);
-            this.chart.Series.Add(series14);
-            this.chart.Series.Add(series15);
-            this.chart.Series.Add(series16);
-            this.chart.Size = new System.Drawing.Size(679, 430);
-            this.chart.TabIndex = 0;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(202, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.chart);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.selector);
-            this.splitContainer1.Size = new System.Drawing.Size(864, 430);
-            this.splitContainer1.SplitterDistance = 679;
-            this.splitContainer1.TabIndex = 6;
-            // 
-            // selector
-            // 
-            this.selector.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.selector.Font = new System.Drawing.Font("Sylfaen", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selector.FormattingEnabled = true;
-            this.selector.Items.AddRange(new object[] {
-            "Up",
-            "U (exact solution)",
-            "U (scheme solution)",
-            "Divergence (exact solution)",
-            "Divergence (scheme solution)",
-            "mScheme",
-            "divergence of Thread",
-            "deltaThread"});
-            this.selector.Location = new System.Drawing.Point(0, 0);
-            this.selector.Name = "selector";
-            this.selector.Size = new System.Drawing.Size(181, 430);
-            this.selector.TabIndex = 9;
-            // 
-            // btnThreadbyFreq
-            // 
-            this.btnThreadbyFreq.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThreadbyFreq.Location = new System.Drawing.Point(6, 545);
-            this.btnThreadbyFreq.Name = "btnThreadbyFreq";
-            this.btnThreadbyFreq.Size = new System.Drawing.Size(189, 54);
-            this.btnThreadbyFreq.TabIndex = 8;
-            this.btnThreadbyFreq.Text = "Thread by frequency";
-            this.btnThreadbyFreq.UseVisualStyleBackColor = true;
-            this.btnThreadbyFreq.Click += new System.EventHandler(this.btnThreadbyFreq_Click);
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "Index";
@@ -479,6 +392,95 @@
             this.Column9.HeaderText = "divergence of Thread";
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
+            // 
+            // chart
+            // 
+            this.chart.BackColor = System.Drawing.Color.Silver;
+            this.chart.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
+            this.chart.BorderlineColor = System.Drawing.Color.Transparent;
+            this.chart.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            this.chart.BorderlineWidth = 0;
+            this.chart.BorderSkin.BackColor = System.Drawing.Color.DarkGreen;
+            chartArea5.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea5);
+            this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend5.Name = "Legend1";
+            this.chart.Legends.Add(legend5);
+            this.chart.Location = new System.Drawing.Point(0, 0);
+            this.chart.Name = "chart";
+            this.chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
+            series33.ChartArea = "ChartArea1";
+            series33.Legend = "Legend1";
+            series33.Name = "Up";
+            series34.ChartArea = "ChartArea1";
+            series34.Legend = "Legend1";
+            series34.Name = "U(e)";
+            series35.ChartArea = "ChartArea1";
+            series35.Legend = "Legend1";
+            series35.Name = "U(s)";
+            series36.ChartArea = "ChartArea1";
+            series36.Legend = "Legend1";
+            series36.Name = "DivF(e)";
+            series37.ChartArea = "ChartArea1";
+            series37.Legend = "Legend1";
+            series37.Name = "DivF(s)";
+            series38.ChartArea = "ChartArea1";
+            series38.Legend = "Legend1";
+            series38.Name = "mScheme (analys type 1)";
+            series39.ChartArea = "ChartArea1";
+            series39.Legend = "Legend1";
+            series39.Name = "divergence of Thread";
+            series40.ChartArea = "ChartArea1";
+            series40.Legend = "Legend1";
+            series40.Name = "deltaThread";
+            this.chart.Series.Add(series33);
+            this.chart.Series.Add(series34);
+            this.chart.Series.Add(series35);
+            this.chart.Series.Add(series36);
+            this.chart.Series.Add(series37);
+            this.chart.Series.Add(series38);
+            this.chart.Series.Add(series39);
+            this.chart.Series.Add(series40);
+            this.chart.Size = new System.Drawing.Size(679, 430);
+            this.chart.TabIndex = 0;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(202, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.chart);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
+            this.splitContainer1.Panel2.Controls.Add(this.selector);
+            this.splitContainer1.Size = new System.Drawing.Size(864, 430);
+            this.splitContainer1.SplitterDistance = 679;
+            this.splitContainer1.TabIndex = 6;
+            // 
+            // selector
+            // 
+            this.selector.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.selector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.selector.Font = new System.Drawing.Font("Sylfaen", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selector.FormattingEnabled = true;
+            this.selector.Items.AddRange(new object[] {
+            "Up",
+            "U (exact solution)",
+            "U (scheme solution)",
+            "Divergence (exact solution)",
+            "Divergence (scheme solution)",
+            "mScheme",
+            "divergence of Thread",
+            "deltaThread"});
+            this.selector.Location = new System.Drawing.Point(0, 0);
+            this.selector.Name = "selector";
+            this.selector.Size = new System.Drawing.Size(181, 430);
+            this.selector.TabIndex = 9;
             // 
             // ModelPro
             // 
