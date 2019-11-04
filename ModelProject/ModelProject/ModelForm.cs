@@ -86,15 +86,19 @@ namespace ModelProject
                 for (int iz = 0; iz <= __NZ; iz++)
                 {
                     tab[0, iz].Value = iz.ToString();
+
                     tab[1, iz].Value = string.Format("{0:E5}", ex.Z[iz]);
-                    tab[2, iz].Value = string.Format("{0:E5}", sc.K[iz]);
-                    tab[3, iz].Value = string.Format("{0:E5}", ex.Up[iz]);
+                    // New test for 18-02-2019
+                    tab[2, iz].Value = string.Format("{0:E5}", ModelBase.GetTemperature(ex.Z[iz], T0, M));
 
-                    tab[4, iz].Value = string.Format("{0:E5}", ex.U[iz]);
-                    tab[5, iz].Value = string.Format("{0:E5}", sc.U[iz]);
+                    tab[3, iz].Value = string.Format("{0:E5}", sc.K[iz]);
+                    tab[4, iz].Value = string.Format("{0:E5}", ex.Up[iz]);
 
-                    tab[6, iz].Value = string.Format("{0:E5}", ex.DivF[iz]);
-                    tab[7, iz].Value = string.Format("{0:E5}", sc.DivF[iz]);
+                    tab[5, iz].Value = string.Format("{0:E5}", ex.U[iz]);
+                    tab[6, iz].Value = string.Format("{0:E5}", sc.U[iz]);
+
+                    tab[7, iz].Value = string.Format("{0:E5}", ex.DivF[iz]);
+                    tab[8, iz].Value = string.Format("{0:E5}", sc.DivF[iz]);
                 }
 
                 ShowGraph();
@@ -180,15 +184,15 @@ namespace ModelProject
                 int n = int.Parse(edtDivisionCounter.Text);
 
                 SelectDataFromTable(1, n, out double[] Z);
-                SelectDataFromTableByGraph(0, 3, n, out double[] Up);
+                SelectDataFromTableByGraph(0, 4, n, out double[] Up);
 
-                SelectDataFromTableByGraph(1, 4, n, out double[] Ue);
-                SelectDataFromTableByGraph(2, 5, n, out double[] Us);
+                SelectDataFromTableByGraph(1, 5, n, out double[] Ue);
+                SelectDataFromTableByGraph(2, 6, n, out double[] Us);
 
-                SelectDataFromTableByGraph(3, 6, n, out double[] DFE);
-                SelectDataFromTableByGraph(4, 7, n, out double[] DFS);
+                SelectDataFromTableByGraph(3, 7, n, out double[] DFE);
+                SelectDataFromTableByGraph(4, 8, n, out double[] DFS);
 
-                SelectDataFromTableByGraph(6, 8, n, out double[] Thread);
+                SelectDataFromTableByGraph(6, 9, n, out double[] Thread);
 
                 // Clear chart
                 foreach (var s in chart.Series)
@@ -231,8 +235,8 @@ namespace ModelProject
 
                     for (int iz = 0; iz <= n; iz++)
                     {
-                        tab[5, iz].Value = string.Format("{0:E5}", sc.U[iz]);
-                        tab[7, iz].Value = string.Format("{0:E5}", sc.DivF[iz]);
+                        tab[6, iz].Value = string.Format("{0:E5}", sc.U[iz]);
+                        tab[8, iz].Value = string.Format("{0:E5}", sc.DivF[iz]);
                     }
 
                     ShowGraph();
@@ -252,8 +256,8 @@ namespace ModelProject
             {
                 // collect data
                 int n = int.Parse(edtDivisionCounter.Text);
-                SelectDataFromTable(4, n, out double[] Ue);
-                SelectDataFromTable(6, n, out double[] DFE);
+                SelectDataFromTable(5, n, out double[] Ue);
+                SelectDataFromTable(7, n, out double[] DFE);
 
                 var AC = new AnalysingCoefficient(Ue, DFE);
                 double m = AC.FirstMethod(n,
@@ -369,7 +373,7 @@ namespace ModelProject
 
                 for (int j = 0; j <= __NZ; j++)
                 {
-                    tab[8, j].Value = string.Format("{0:E5}", result[j]);
+                    tab[9, j].Value = string.Format("{0:E5}", result[j]);
                 }
 
                 ShowGraph();
