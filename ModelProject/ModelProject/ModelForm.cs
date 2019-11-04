@@ -16,6 +16,42 @@ namespace ModelProject
 
             selector.SetItemChecked(3, true);
             selector.SetItemChecked(4, true);
+
+            // collect divergences by temperature and pressure
+            System.IO.StreamWriter sw1 = new System.IO.StreamWriter(@"..//..//20191105//DivF.csv");
+            System.IO.StreamWriter sw2 = new System.IO.StreamWriter(@"..//..//20191105//U.csv");
+            //System.IO.StreamWriter sw3 = new System.IO.StreamWriter(@"..//..//20191105//T.csv");
+
+            int __NZ = int.Parse(edtDivisionCounter.Text);
+            double T0 = double.Parse(edtHighestTemp.Text);
+            double M = double.Parse(edtPowerTemp.Text);
+            double Radius = double.Parse(edtRadius.Text);
+
+            var sc = new SchemeSolution(__NZ, T0, M, Radius);
+
+            System.IO.StreamReader reader = new System.IO.StreamReader(@"..//..//20190812//M.txt");
+
+            for (int i = 0; i <= 192; i++)
+            {
+                sc.MScheme = double.Parse(reader.ReadLine());
+                sc.Solve(i);
+
+                // write to file(s)
+                for (int j = 0; j < __NZ; j++)
+                {
+                    sw1.Write("{0:E},", sc.DivF[j]);
+                    sw2.Write("{0:E},", sc.U[j]);
+                    //sw3.Write("{0:E},", sc.Temperature[j]);
+                }
+
+                sw1.WriteLine("{0:E}", sc.DivF[__NZ]);
+                sw2.WriteLine("{0:E}", sc.U[__NZ]);
+            }
+
+            sc = null;
+            sw1.Close();
+            sw2.Close();
+            //sw3.Close();
         }
 
         /// <summary>
@@ -63,6 +99,7 @@ namespace ModelProject
 
                 ShowGraph();
 
+            
                 ex = null;
                 sc = null;
                 //ss = null;
@@ -267,10 +304,12 @@ namespace ModelProject
 
                 // save m (analys) and tau to file
                 using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"..//..//MT-reports//MT.txt"))
+                //using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"..//..//1208//M.txt"))
                 {
                     for (int j = 0; j <= MaxIndex; j++)
                     {
                         file.Write("{0}\t{1}\t{2}\n", Freq[j], MS[j], Tau[j]);
+                        //file.WriteLine("{0}", MS[j]);
                     }
                 }
 
@@ -335,6 +374,8 @@ namespace ModelProject
 
                 ShowGraph();
                 sc = null;
+
+                //Reports.GetTempDiverg(40, double.Parse(edtRadius.Text));
             }
             catch (Exception ex)
             {
