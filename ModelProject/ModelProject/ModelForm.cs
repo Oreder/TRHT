@@ -17,41 +17,119 @@ namespace ModelProject
             selector.SetItemChecked(3, true);
             selector.SetItemChecked(4, true);
 
-            // collect divergences by temperature and pressure
-            System.IO.StreamWriter sw1 = new System.IO.StreamWriter(@"..//..//20191105//DivF.csv");
-            System.IO.StreamWriter sw2 = new System.IO.StreamWriter(@"..//..//20191105//U.csv");
-            //System.IO.StreamWriter sw3 = new System.IO.StreamWriter(@"..//..//20191105//T.csv");
+            //#region Prepare data for Experiments
+            ////// collect divergences by temperature and pressure
+            ////System.IO.StreamWriter sw1 = new System.IO.StreamWriter(@"..//..//20191110//DivF.csv");
+            ////System.IO.StreamWriter sw2 = new System.IO.StreamWriter(@"..//..//20191110//U.csv");
 
-            int __NZ = int.Parse(edtDivisionCounter.Text);
+            //int __NZ = 80;//int.Parse(edtDivisionCounter.Text);
+            //double T0 = double.Parse(edtHighestTemp.Text);
+            //double M = double.Parse(edtPowerTemp.Text);
+            //double Radius = double.Parse(edtRadius.Text);
+
+            //var sc = new SchemeSolution(__NZ, T0, M, Radius);
+
+            ////System.IO.StreamReader reader = new System.IO.StreamReader(@"..//..//20190812//M.txt");
+
+            ////for (int i = 0; i <= 192; i++)
+            ////{
+            ////    sc.MScheme = 0.3425;//double.Parse(reader.ReadLine());
+            ////    sc.Solve(i);
+
+            ////    // write to file(s)
+            ////    for (int j = 0; j < __NZ; j++)
+            ////    {
+            ////        sw1.Write("{0:E},", sc.DivF[j]);
+            ////        sw2.Write("{0:E},", sc.U[j]);
+            ////        //sw3.Write("{0:E},", ModelBase.GetTemperature(sc.Z[j], T0, M));
+            ////    }
+
+            ////    sw1.WriteLine("{0:E}", sc.DivF[__NZ]);
+            ////    sw2.WriteLine("{0:E}", sc.U[__NZ]);
+            ////}
+
+            ////sc = null;
+            ////sw1.Close();
+            ////sw2.Close();
+            ////sw3.Close();
+
+            //// collect divergences by temperature and pressure
+            //System.IO.StreamWriter sw1 = new System.IO.StreamWriter(@"..//..//20191110//D.csv");
+            //System.IO.StreamWriter sw2 = new System.IO.StreamWriter(@"..//..//20191110//T.csv");
+
+            //__NZ = 15;
+            //double[] result = new double[__NZ + 1];
+
+            //for (double m = 4.0; m <= 16; m += 0.5)
+            //{
+            //    sc = new SchemeSolution(__NZ, T0, m, Radius);
+            //    sc.MScheme = 0.15;
+
+            //    for (int i = 0; i < sc.NFreq; i++)
+            //    {
+            //        sc.Solve(i);
+            //        for (int j = 0; j <= __NZ; j++)
+            //        {
+            //            result[j] += sc.DivF[j] * sc.dFreq;
+            //        }
+            //    }
+
+            //    for (int j = 0; j < __NZ; j++)
+            //    {
+            //        sw1.Write("{0:E},", result[j]);
+            //        sw2.Write("{0:E},", sc.Z[j]);
+            //    }
+
+            //    sw1.WriteLine("{0:E}", result[__NZ]);
+            //    sw2.WriteLine("{0:E}", sc.Z[__NZ]);
+            //    sc = null;
+            //}
+
+            //sw1.Close();
+            //sw2.Close(); 
+            //#endregion
+
+            #region Test 12.12.2019
+            System.IO.StreamWriter sw1 = new System.IO.StreamWriter(@"..//..//20191212//T.csv");
+            System.IO.StreamWriter sw2 = new System.IO.StreamWriter(@"..//..//20191212//D.csv");
+
+            int  __NZ = int.Parse(edtDivisionCounter.Text);
             double T0 = double.Parse(edtHighestTemp.Text);
-            double M = double.Parse(edtPowerTemp.Text);
+            double  M = double.Parse(edtPowerTemp.Text);
             double Radius = double.Parse(edtRadius.Text);
 
-            var sc = new SchemeSolution(__NZ, T0, M, Radius);
-
-            System.IO.StreamReader reader = new System.IO.StreamReader(@"..//..//20190812//M.txt");
-
-            for (int i = 0; i <= 192; i++)
+            double[] result = new double[__NZ + 1];
+            for (double t = 0; t <= 4000; t += 200)
             {
-                sc.MScheme = double.Parse(reader.ReadLine());
-                sc.Solve(i);
+                double T = T0 + t;
+                for (int j = 0; j <= __NZ; j++)
+                    result[j] = 0.0;
 
-                // write to file(s)
-                for (int j = 0; j < __NZ; j++)
+                SchemeSolution sc = new SchemeSolution(__NZ, T, M, Radius);
+                sc.MScheme = double.Parse(mScheme.Text);
+
+                for (int i = 0; i < sc.NFreq; i++)
                 {
-                    sw1.Write("{0:E},", sc.DivF[j]);
-                    sw2.Write("{0:E},", sc.U[j]);
-                    //sw3.Write("{0:E},", sc.Temperature[j]);
+                    sc.Solve(i);
+                    for (int j = 0; j <= __NZ; j++)
+                    {
+                        result[j] += sc.DivF[j] * sc.dFreq;
+                    }
                 }
 
-                sw1.WriteLine("{0:E}", sc.DivF[__NZ]);
-                sw2.WriteLine("{0:E}", sc.U[__NZ]);
+                for (int j = 0; j < __NZ; j++)
+                {
+                    sw1.Write($"{sc.Z[j]:E},");
+                    sw2.Write($"{result[j]:E},");
+                }
+
+                sw1.WriteLine($"{sc.Z[__NZ]:E}");
+                sw2.WriteLine($"{result[__NZ]:E}");
             }
 
-            sc = null;
             sw1.Close();
             sw2.Close();
-            //sw3.Close();
+            #endregion
         }
 
         /// <summary>

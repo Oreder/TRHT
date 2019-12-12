@@ -169,7 +169,7 @@
             this.edtDivisionCounter.Name = "edtDivisionCounter";
             this.edtDivisionCounter.Size = new System.Drawing.Size(112, 34);
             this.edtDivisionCounter.TabIndex = 2;
-            this.edtDivisionCounter.Text = "80";
+            this.edtDivisionCounter.Text = "20";
             this.edtDivisionCounter.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // panel1

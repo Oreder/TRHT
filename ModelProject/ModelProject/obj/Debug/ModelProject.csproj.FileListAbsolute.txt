@@ -42,3 +42,13 @@ C:\Users\TA\Desktop\Diplome\Diploma-Sharp\TRHT\ModelProject\ModelProject\obj\Deb
 C:\Users\TA\Desktop\Diplome\Diploma-Sharp\TRHT\ModelProject\ModelProject\obj\Debug\ModelProject.exe
 C:\Users\TA\Desktop\Diplome\Diploma-Sharp\TRHT\ModelProject\ModelProject\obj\Debug\ModelProject.pdb
 >>>>>>> ab93f0fad87cc4aa8c4f2c987506d48cdf579e30
+C:\Users\haste\Desktop\Diplome-master\TRHT\ModelProject\ModelProject\obj\Debug\ModelProject.csprojAssemblyReference.cache
+C:\Users\haste\Desktop\Diplome-master\TRHT\ModelProject\ModelProject\obj\Debug\ModelProject.ModelPro.resources
+C:\Users\haste\Desktop\Diplome-master\TRHT\ModelProject\ModelProject\obj\Debug\ModelProject.Properties.Resources.resources
+C:\Users\haste\Desktop\Diplome-master\TRHT\ModelProject\ModelProject\obj\Debug\ModelProject.csproj.GenerateResource.cache
+C:\Users\haste\Desktop\Diplome-master\TRHT\ModelProject\ModelProject\obj\Debug\ModelProject.csproj.CoreCompileInputs.cache
+C:\Users\haste\Desktop\Diplome-master\TRHT\ModelProject\ModelProject\obj\Debug\ModelProject.exe
+C:\Users\haste\Desktop\Diplome-master\TRHT\ModelProject\ModelProject\obj\Debug\ModelProject.pdb
+C:\Users\haste\Desktop\Diplome-master\TRHT\ModelProject\ModelProject\bin\Debug\ModelProject.exe.config
+C:\Users\haste\Desktop\Diplome-master\TRHT\ModelProject\ModelProject\bin\Debug\ModelProject.exe
+C:\Users\haste\Desktop\Diplome-master\TRHT\ModelProject\ModelProject\bin\Debug\ModelProject.pdb

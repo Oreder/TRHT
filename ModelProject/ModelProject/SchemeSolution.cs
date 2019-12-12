@@ -167,7 +167,7 @@
             {
                 double pos = (double)j / __NZ,
                        tpa = GetTemperature(pos, T0, M);
-
+                Z[j] = tpa;
                 K[j] = Interp.Lerp(tpa, Temperature, __kFT);
                 Up[j] = __Up(tpa, Freq, dFreq);
                 U[j] = tmp[j];
